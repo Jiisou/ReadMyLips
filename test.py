@@ -13,6 +13,9 @@ class VideoPreprocessor:
 
     def detect_scene_changes(self):
         cap = cv2.VideoCapture(self.video_path)
+        if not cap.isOpened():
+            print("Error: 비디오 파일을 열 수 없습니다.")
+            return [], []  # 빈 리스트를 반환하여 종료 방지
         ret, prev_frame = cap.read()
         scene_changes = []
         clips = []
@@ -99,6 +102,8 @@ class VideoPreprocessor:
                 clip_count += 1
 
 
-# 사용 예시
-video_preprocessor = VideoPreprocessor(video_path='TalkMedia_talkv_high.mp4.mp4', output_dir='extract_result')
-video_preprocessor.process_video()
+if __name__ == "__main__":
+
+
+    video_preprocessor = VideoPreprocessor(video_path='output_video.mp4', output_dir='extract_result_2')
+    video_preprocessor.process_video()
